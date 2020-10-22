@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "0361D2E3-3117-4170-B022-8D0851E0D528",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Groot.xcodeproj",
+      "identifier" : "B40873611B5AB6930063F150",
+      "name" : "Groot-Mac"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Groot.xcodeproj",
+        "identifier" : "B408736B1B5AB6930063F150",
+        "name" : "Groot-MacTests"
+      }
+    }
+  ],
+  "version" : 1
+}

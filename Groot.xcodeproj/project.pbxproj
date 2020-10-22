@@ -299,10 +299,10 @@
 		B4DC1AFC1AA9CA5E00F67403 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B4DC1AFD1AA9CA5E00F67403 /* Info.plist */,
 				82BCF4DE1D913EF700BC4E0F /* Models.swift */,
 				82BCF4DC1D9123BF00BC4E0F /* Data+Resource.swift */,
 				B4DC1B2D1AA9CBAD00F67403 /* Model.xcdatamodeld */,
-				B4DC1AFD1AA9CA5E00F67403 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -491,6 +491,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = B4DC1AE21AA9CA5E00F67403;
@@ -653,7 +654,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = Groot/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Groot/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
@@ -676,7 +677,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = Groot/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Groot/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
@@ -849,7 +850,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Groot/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Groot/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gonzalezreal.$(PRODUCT_NAME:rfc1034identifier)";
@@ -869,7 +870,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Groot/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Groot/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gonzalezreal.$(PRODUCT_NAME:rfc1034identifier)";
@@ -887,7 +888,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = GrootTests/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Tests/GrootTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gonzalezreal.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -899,7 +900,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = GrootTests/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Tests/GrootTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gonzalezreal.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

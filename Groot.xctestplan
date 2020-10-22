@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "DAE4AA6A-F8FE-47F5-885B-4F2E46137347",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Groot.xcodeproj",
+      "identifier" : "B4DC1AEB1AA9CA5E00F67403",
+      "name" : "Groot"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Groot.xcodeproj",
+        "identifier" : "B4DC1AF61AA9CA5E00F67403",
+        "name" : "GrootTests"
+      }
+    }
+  ],
+  "version" : 1
+}
