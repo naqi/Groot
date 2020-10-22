@@ -9,6 +9,7 @@
 import XCTest
 import Groot
 
+// swiftlint:disable all
 class SerializationTests: XCTestCase {
 
     var store: GRTManagedStore?
@@ -90,7 +91,10 @@ class SerializationTests: XCTestCase {
         ]
 
         do {
-            let batman: Character = try object(fromJSONDictionary: batmanJSON, inContext: context)
+            guard let batman: Character = try object(fromJSONDictionary: batmanJSON, inContext: context) else {
+                XCTFail("Type cast failed")
+                return
+            }
 
             XCTAssertEqual(1699, batman.identifier)
             XCTAssertEqual("Batman", batman.name)
@@ -130,7 +134,7 @@ class SerializationTests: XCTestCase {
         ]
 
         do {
-            let _: Character = try object(fromJSONDictionary: invalidBatman, inContext: context)
+            let _: Character? = try object(fromJSONDictionary: invalidBatman, inContext: context)
             XCTFail("This should fail")
         } catch let error as NSError {
             XCTAssertEqual(GRTErrorDomain, error.domain)
@@ -155,7 +159,7 @@ class SerializationTests: XCTestCase {
         ]
 
         do {
-            let _: Character = try object(fromJSONDictionary: invalidBatman, inContext: context)
+            let _: Character? = try object(fromJSONDictionary: invalidBatman, inContext: context)
             XCTFail("This should fail")
         } catch let error as NSError {
             XCTAssertEqual(GRTErrorDomain, error.domain)
@@ -190,7 +194,7 @@ class SerializationTests: XCTestCase {
             ]
         ]
 
-        guard let _: Character = try? object(fromJSONDictionary: batmanJSON, inContext: context) else {
+        guard let _: Character? = try? object(fromJSONDictionary: batmanJSON, inContext: context) else {
             XCTFail()
             return
         }
@@ -221,7 +225,7 @@ class SerializationTests: XCTestCase {
                 ]
         ]
 
-        guard let _: [Character] = try? objects(fromJSONArray: updateJSON, inContext: context) else {
+        guard let _: [Character]? = try? objects(fromJSONArray: updateJSON, inContext: context) else {
             XCTFail()
             return
         }
@@ -296,13 +300,13 @@ class SerializationTests: XCTestCase {
         }
 
         do {
-            let _: [Character] = try objects(fromJSONData: data, inContext: context)
+            let _: [Character]? = try objects(fromJSONData: data, inContext: context)
         } catch {
             XCTFail("error: \(error)")
         }
 
         do {
-            let _: [Character] = try objects(fromJSONData: updatedData, inContext: context)
+            let _: [Character]? = try objects(fromJSONData: updatedData, inContext: context)
             XCTFail("This should fail")
         } catch let error as NSError {
             XCTAssertEqual(NSCocoaErrorDomain, error.domain)
@@ -319,7 +323,10 @@ class SerializationTests: XCTestCase {
         let json = ["1699", "1455"]
 
         do {
-            let characters: [Character] = try objects(fromJSONArray: json, inContext: context)
+            guard let characters: [Character] = try objects(fromJSONArray: json, inContext: context) else {
+                XCTFail("Type cast failed")
+                return
+            }
 
             XCTAssertEqual(2, characters.count)
 
@@ -363,9 +370,9 @@ class SerializationTests: XCTestCase {
         ]
 
         do {
-            let batman: Character = try object(fromJSONDictionary: batmanJSON, inContext: context)
-            let _: [Power] = try objects(fromJSONArray: powersJSON, inContext: context)
-            let _: Publisher = try object(fromJSONDictionary: publisherJSON, inContext: context)
+            let batman: Character = try object(fromJSONDictionary: batmanJSON, inContext: context) as! Character
+            let _: [Power] = try objects(fromJSONArray: powersJSON, inContext: context) ?? []
+            let _: Publisher = try object(fromJSONDictionary: publisherJSON, inContext: context) as! Publisher
 
             XCTAssertEqual(2, batman.powers.count)
 
@@ -402,7 +409,7 @@ class SerializationTests: XCTestCase {
         let json = ["1699", "1455"]
 
         do {
-            let _: [Character] = try objects(fromJSONArray: json, inContext: context)
+            let _: [Character]? = try objects(fromJSONArray: json, inContext: context)
             XCTFail("This should fail")
         } catch let error as NSError {
             XCTAssertEqual(GRTErrorDomain, error.domain)
@@ -419,7 +426,7 @@ class SerializationTests: XCTestCase {
         let json: JSONArray = ["1699", NSValue(range: NSRange(location: 0, length: 0))]
 
         do {
-            let _: [Character] = try objects(fromJSONArray: json, inContext: context)
+            let _: [Character]? = try objects(fromJSONArray: json, inContext: context)
             XCTFail("This should fail")
         } catch let error as NSError {
             XCTAssertEqual(NSCocoaErrorDomain, error.domain)
@@ -436,7 +443,11 @@ class SerializationTests: XCTestCase {
         }
 
         do {
-            let containers: [Container] = try objects(fromJSONData: data, inContext: context)
+            guard let containers: [Container] = try objects(fromJSONData: data, inContext: context) else {
+                XCTFail("Type cast failed")
+                return
+            }
+            
             XCTAssertEqual(1, containers.count)
 
             let abstracts = containers[0].abstracts.sorted(by: identifierAscending)
@@ -481,7 +492,10 @@ class SerializationTests: XCTestCase {
         ]
 
         do {
-            let batman: Character = try object(fromJSONDictionary: batmanJSON, inContext: context)
+            guard let batman: Character = try object(fromJSONDictionary: batmanJSON, inContext: context) else {
+                XCTFail("Type cast failed")
+                return
+            }
 
             XCTAssertEqual(1699, batman.identifier)
             XCTAssertEqual("Batman", batman.name)
@@ -501,7 +515,10 @@ class SerializationTests: XCTestCase {
         }
 
         do {
-            let cards: [Card] = try objects(fromJSONData: data, inContext: context)
+            guard let cards: [Card] = try objects(fromJSONData: data, inContext: context) else {
+                XCTFail("Type cast failed")
+                return
+            }
 
             XCTAssertEqual(2, cards.count)
 
@@ -515,11 +532,14 @@ class SerializationTests: XCTestCase {
             XCTAssertEqual("Hearts", jackOfHearts.suit)
             XCTAssertEqual("Jack", jackOfHearts.value)
 
-            let updatedCards: [Card] = try objects(fromJSONData: updatedData, inContext: context)
+            guard let updatedCards: [Card] = try objects(fromJSONData: updatedData, inContext: context) else {
+                XCTFail("Type cast failed")
+                return
+            }
 
             XCTAssertEqual(4, jackOfHearts.numberOfTimesPlayed)
 
-            let threeOfClubs = updatedCards[1];
+            let threeOfClubs = updatedCards[1]
             XCTAssertEqual(1, threeOfClubs.numberOfTimesPlayed)
             XCTAssertEqual("Clubs", threeOfClubs.suit)
             XCTAssertEqual("Three", threeOfClubs.value)
@@ -534,41 +554,56 @@ class SerializationTests: XCTestCase {
 
     func testSerializationToJSON() {
         guard let context = context else {
-            XCTFail()
+            XCTFail("Foiled!")
             return
         }
 
-        let dc = NSEntityDescription.insertNewObject(
+        guard let desc = NSEntityDescription.insertNewObject(
             forEntityName: "Publisher",
-            into: context) as! Publisher
-        dc.identifier = 10
-        dc.name = "DC Comics"
+            into: context) as? Publisher else {
+            XCTFail("Type cast failed")
+            return
+        }
+        desc.identifier = 10
+        desc.name = "DC Comics"
 
-        let agility = NSEntityDescription.insertNewObject(
+        guard let agility = NSEntityDescription.insertNewObject(
             forEntityName: "Power",
-            into: context) as! Power
+            into: context) as? Power else {
+            XCTFail("Type cast failed")
+            return
+        }
         agility.identifier = 4
         agility.name = "Agility"
 
-        let wealth = NSEntityDescription.insertNewObject(
+        guard let wealth = NSEntityDescription.insertNewObject(
             forEntityName: "Power",
-            into: context) as! Power
+            into: context) as? Power else {
+            XCTFail("Type cast failed")
+            return
+        }
         wealth.identifier = 9
         wealth.name = "Insanely Rich"
 
-        let batman = NSEntityDescription.insertNewObject(
+        guard let batman = NSEntityDescription.insertNewObject(
             forEntityName: "Character",
-            into: context) as! Character
+            into: context) as? Character else {
+            XCTFail("Type cast failed")
+            return
+        }
         batman.identifier = 1699
         batman.name = "Batman"
         batman.realName = "Bruce Wayne"
         batman.powers.insert(agility)
         batman.powers.insert(wealth)
-        batman.publisher = dc
+        batman.publisher = desc
 
-        let ironMan = NSEntityDescription.insertNewObject(
+        guard let ironMan = NSEntityDescription.insertNewObject(
             forEntityName: "Character",
-            into: context) as! Character
+            into: context) as? Character else {
+            XCTFail("Type cast failed")
+            return
+        }
         ironMan.name = "Iron Man"
 
         let result = json(fromObjects: [batman, ironMan])
@@ -616,9 +651,13 @@ class SerializationTests: XCTestCase {
             "JSONKeyPath": "real_name.foo.bar.name"
         ]
 
-        let batman = NSEntityDescription.insertNewObject(
+        guard let batman = NSEntityDescription.insertNewObject(
             forEntityName: "Character",
-            into: context) as! Character
+            into: context) as? Character else {
+            XCTFail("Type cast failed")
+            return
+        }
+        
         batman.realName = "Bruce Wayne"
 
         let result = json(fromObject: batman)
@@ -637,7 +676,7 @@ class SerializationTests: XCTestCase {
             "publisher": NSNull()
         ]
 
-        XCTAssertEqual(result as NSDictionary, expectedResult as NSDictionary)
+        XCTAssertEqual(result! as NSDictionary, expectedResult as NSDictionary)
     }
 }
 

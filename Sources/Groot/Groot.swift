@@ -64,7 +64,9 @@ extension NSManagedObject {
 /// - parameter context: The context into which to fetch or insert the managed objects.
 ///
 /// - returns: An array of managed objects
-public func objects(withEntityName name: String, fromJSONData data: Data, inContext context: NSManagedObjectContext) throws -> [NSManagedObject] {
+public func objects(withEntityName name: String,
+                    fromJSONData data: Data,
+                    inContext context: NSManagedObjectContext) throws -> [NSManagedObject] {
     return try GRTJSONSerialization.objects(withEntityName: name, fromJSONData: data, in: context)
 }
 
@@ -74,11 +76,11 @@ public func objects(withEntityName name: String, fromJSONData data: Data, inCont
 /// - parameter context: The context into which to fetch or insert the managed objects.
 ///
 /// - returns: An array of managed objects.
-public func objects<T: NSManagedObject>(fromJSONData data: Data, inContext context: NSManagedObjectContext) throws -> [T] {
+public func objects<T: NSManagedObject>(fromJSONData data: Data,
+                                        inContext context: NSManagedObjectContext) throws -> [T]? {
     let entity = T.entity(inManagedObjectContext: context)
     let managedObjects = try objects(withEntityName: entity.name!, fromJSONData: data, inContext: context)
-    
-    return managedObjects as! [T]
+    return managedObjects as? [T]
 }
 
 public typealias JSONDictionary = [String: Any]
@@ -92,7 +94,9 @@ public typealias JSONDictionary = [String: Any]
 /// - parameter context:    The context into which to fetch or insert the managed objects.
 ///
 /// - returns: A managed object.
-public func object(withEntityName name: String, fromJSONDictionary dictionary: JSONDictionary, inContext context: NSManagedObjectContext) throws -> NSManagedObject {
+public func object(withEntityName name: String,
+                   fromJSONDictionary dictionary: JSONDictionary,
+                   inContext context: NSManagedObjectContext) throws -> NSManagedObject {
     return try GRTJSONSerialization.object(withEntityName: name, fromJSONDictionary: dictionary, in: context)
 }
 
@@ -104,11 +108,12 @@ public func object(withEntityName name: String, fromJSONDictionary dictionary: J
 /// - parameter context:    The context into which to fetch or insert the managed objects.
 ///
 /// - returns: A managed object.
-public func object<T: NSManagedObject>(fromJSONDictionary dictionary: JSONDictionary, inContext context: NSManagedObjectContext) throws -> T {
+public func object<T: NSManagedObject>(fromJSONDictionary
+                                        dictionary: JSONDictionary,
+                                       inContext context: NSManagedObjectContext) throws -> T? {
     let entity = T.entity(inManagedObjectContext: context)
     let managedObject = try object(withEntityName: entity.name!, fromJSONDictionary: dictionary, inContext: context)
-    
-    return managedObject as! T
+    return managedObject as? T
 }
 
 public typealias JSONArray = [Any]
@@ -120,7 +125,9 @@ public typealias JSONArray = [Any]
 /// - parameter context: The context into which to fetch or insert the managed objects.
 ///
 /// - returns: An array of managed objects.
-public func objects(withEntityName name: String, fromJSONArray array: JSONArray, inContext context: NSManagedObjectContext) throws -> [NSManagedObject] {
+public func objects(withEntityName name: String,
+                    fromJSONArray array: JSONArray,
+                    inContext context: NSManagedObjectContext) throws -> [NSManagedObject] {
     return try GRTJSONSerialization.objects(withEntityName: name, fromJSONArray: array, in: context)
 }
 
@@ -130,11 +137,11 @@ public func objects(withEntityName name: String, fromJSONArray array: JSONArray,
 /// - parameter context: The context into which to fetch or insert the managed objects.
 ///
 /// - returns: An array of managed objects.
-public func objects<T: NSManagedObject>(fromJSONArray array: JSONArray, inContext context: NSManagedObjectContext) throws -> [T] {
+public func objects<T: NSManagedObject>(fromJSONArray array: JSONArray,
+                                        inContext context: NSManagedObjectContext) throws -> [T]? {
     let entity = T.entity(inManagedObjectContext: context)
     let managedObjects = try objects(withEntityName: entity.name!, fromJSONArray: array, inContext: context)
-    
-    return managedObjects as! [T]
+    return managedObjects as? [T]
 }
 
 /// Converts a managed object into a JSON representation.
@@ -142,8 +149,8 @@ public func objects<T: NSManagedObject>(fromJSONArray array: JSONArray, inContex
 /// - parameter object: The managed object to use for JSON serialization.
 ///
 /// - returns: A JSON dictionary.
-public func json(fromObject object: NSManagedObject) -> JSONDictionary {
-    return GRTJSONSerialization.jsonDictionary(from: object) as! JSONDictionary;
+public func json(fromObject object: NSManagedObject) -> JSONDictionary? {
+    return GRTJSONSerialization.jsonDictionary(from: object) as? JSONDictionary
 }
 
 /// Converts an array of managed objects into a JSON representation.
