@@ -271,7 +271,8 @@
 				B4DC1B101AA9CAC200F67403 /* Private */,
 				B4DC1AEF1AA9CA5E00F67403 /* Supporting Files */,
 			);
-			path = Groot;
+			name = Groot;
+			path = Sources/Groot;
 			sourceTree = "<group>";
 		};
 		B4DC1AEF1AA9CA5E00F67403 /* Supporting Files */ = {
@@ -291,7 +292,8 @@
 				B42A1D901B56600000309637 /* JSON */,
 				B4DC1AFC1AA9CA5E00F67403 /* Supporting Files */,
 			);
-			path = GrootTests;
+			name = GrootTests;
+			path = Tests/GrootTests;
 			sourceTree = "<group>";
 		};
 		B4DC1AFC1AA9CA5E00F67403 /* Supporting Files */ = {
